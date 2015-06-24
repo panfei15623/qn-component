@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <style>
+        body{
+            font-family: "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+    <h2>BootStrap confirm</h2>
+    <button class="btn btn-default" onclick="qnConfirm()">confirm</button>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/qn-confirm.js"></script>
+    <script src="js/qn-utils.js"></script>
+    <script>
+        function qnConfirm(){
+//            qn.confirm("确定删除吗？",{size : "lg", showTitle : true, title : "删除"});
+
+            qn.confirm("确定删除吗？",{size : "sm", showTitle : true, title : "删除",btnColor:''}, function(ok) {
+                if (ok) {
+                   console.log("ok");
+                } else {
+                    console.log("cancel");
+                }
+
+            });
+        }
+    </script>
+</body>
+</html>

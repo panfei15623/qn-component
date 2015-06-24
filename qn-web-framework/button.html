@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Button</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Bootstrap Buttons</h2>
+
+<qn-button params="title:'Press me', cls: 'success', icon: 'ok'" data-bind="click: myClick"></qn-button>
+<qn-button params="title:'Hello'"></qn-button>
+<button class="btn btn-info" data-bind="click: myClick">Normal Button</button>
+<div data-bind="foreach: myButtonTitles">
+    <qn-button params="title: $data"></qn-button>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/knockout-3.2.0.js"></script>
+<script src="framework/qn-button.js"></script>
+<script>
+    $(function() {
+        var myViewModel = {
+            myClick : function() {
+                alert("myClick");
+            },
+
+            myButtonTitles : ["title 1 from viewModel", "title 2 from viewModel"]
+        };
+        ko.applyBindings(myViewModel);
+    });
+</script>
+</body>
+</html>

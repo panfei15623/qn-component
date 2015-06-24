@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="framework/qn-form-wizard.css"/>
+    <style>
+        body {
+            font-family: "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+<button class="btn btn-info" data-toggle="modal" data-target="#myModal">创建活动向导</button>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click: cancel">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h3 class="modal-title">创建活动</h3>
+            </div>
+            <div class="modal-body" style="padding: 0; height: 450px">
+                <div class="qn-wizard-nav-container">
+                    <div class="qn-wizard-nav" data-bind="foreach: stepList">
+
+                        <div class="qn-wizard-nav-item" data-bind="
+                            css:{
+                                'selected': $root.step() == $index(),
+                                'passed' : $root.step() > $index(),
+                                'not-passed' : $root.step() < $index()
+                            }">
+                            <span data-bind="text: title"></span>
+                            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                        </div>
+
+                        <!--<div class="qn-wizard-nav-item" data-bind="css:{'selected': step() == 1}">Step 1 - Basic-->
+                            <!--<span class="glyphicon glyphicon-chevron-right pull-right"></span>-->
+                        <!--</div>-->
+                        <!--<div class="qn-wizard-nav-item not-passsed">Step 2 - Call List-->
+                            <!--<span class="glyphicon glyphicon-chevron-right pull-right"></span>-->
+                        <!--</div>-->
+                        <!--<div class="qn-wizard-nav-item not-passsed">Step 3 - Time Strategy-->
+                            <!--<span class="glyphicon glyphicon-chevron-right pull-right"></span>-->
+                        <!--</div>-->
+                        <!--<div class="qn-wizard-nav-item not-passsed">Step 4 -  Export Strategy-->
+                            <!--<span class="glyphicon glyphicon-chevron-right pull-right"></span>-->
+                        <!--</div>-->
+                        <!--<div class="qn-wizard-nav-item not-passsed">Step 5 - Advanced-->
+                            <!--<span class="glyphicon glyphicon-chevron-right pull-right"></span>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="qn-wizard-content-container">
+
+                    <div data-bind="visible: step() == 0">
+                        <h4>基本信息</h4>
+
+                        <form action="">
+                            <div class="form-group">
+                                <label>活动名称:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="form-group">
+                                <label>活动描述:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                            <div class="form-group">
+                                <label>活动类型:</label>
+                                <select class="form-control" type="text">
+                                    <option>自动外拨</option>
+                                    <option>其他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">启动方式:</label>
+                                <div>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="startupMode"/> 自动启动
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="startupMode"/> 手工启动
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div data-bind="visible: step() == 1">
+                        <h4>呼叫列表配置</h4>
+
+                        <form action="">
+                            <div class="form-group">
+                                <label>选择呼叫列表:</label>
+                                <input class="form-control" type="text"/>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div data-bind="visible: step() == 2">
+                        <h4>时间策略</h4>
+                        <p class="text-muted">@TODO</p>
+                    </div>
+
+                    <div data-bind="visible: step() == 3">
+                        <h4>导出策略</h4>
+                        <p class="text-muted">@TODO</p>
+                    </div>
+
+                    <div data-bind="visible: step() == 4">
+                        <h4>高级配置</h4>
+                        <p class="text-muted">@TODO</p>
+                    </div>
+
+                    <div data-bind="visible: step() == 5">
+                        <h4>总览</h4>
+                        <p class="text-muted">@TODO</p>
+                    </div>
+                </div>
+
+                <div class="qn-wizard-control-container">
+                    <a class="btn btn-link" href="#" data-bind="click: cancel"><span class="text-muted">取消</span></a>
+                    <button class="btn btn-default btn-sm" data-bind="click: prevStep, visible: !atFirstStep()">
+                        <span class="glyphicon glyphicon-chevron-left"></span> 上一步</button>
+                    <button class="btn btn-success btn-sm" data-bind="visible: atLastStep()">
+                        <span class="glyphicon glyphicon-ok"></span> 提交</button>
+                    <button class="btn btn-primary btn-sm" data-bind="click: nextStep, visible: !atLastStep()">
+                        下一步 <span class="glyphicon glyphicon-chevron-right"></span> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/knockout-3.2.0.js"></script>
+<script>
+    $(function() {
+        var ViewModel = function() {
+            this.stepList = ko.observableArray([{
+                title : "步骤1 - 基本信息"
+            },{
+                title : "步骤2 - 呼叫列表配置"
+            },{
+                title : "步骤3 - 时间策略"
+            },{
+                title : "步骤4 - 导出策略"
+            },{
+                title : "步骤5 - 高级配置"
+            },{
+                title : "步骤6 - 总览"
+            }]);
+            this.step = ko.observable(0);
+            this.nextStep = function() {
+                this.step(this.step() + 1);
+            }.bind(this);
+            this.prevStep = function() {
+                this.step(this.step() - 1);
+            }.bind(this);
+
+            this.atFirstStep = ko.computed(function() {
+                return this.step() == 0;
+            }, this);
+            this.atLastStep = ko.computed(function() {
+                return this.step() == this.stepList().length - 1;
+            }, this);
+
+            this.cancel = function() {
+                if (confirm("确定取消本次操作么?")) {
+                    $("#myModal").modal('hide');
+                }
+            };
+        };
+
+        ko.applyBindings(new ViewModel());
+    });
+</script>
+</body>
+</html>

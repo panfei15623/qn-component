@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <style>
+        body {
+            font-family: "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+<h2>Bootstrap Alerts</h2>
+
+<button class="btn btn-default" onclick="qnAlert()">Normal Alert</button>
+<button class="btn btn-default" onclick="qnAlertWithOptions()">Large alert with title</button>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/knockout-3.2.0.js"></script>
+<script src="framework/qn-alert.js"></script>
+<script src="framework/qn-utils.js"></script>
+<script>
+    function qnAlert() {
+        qn.alert("Hello, world");
+    }
+
+    function qnAlertWithOptions() {
+        qn.alert("Hello, This is a large modal with title", {
+            size : "lg", showTitle : true, title : "Oh"
+        })
+    }
+
+</script>
+</body>
+</html>

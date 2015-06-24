@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <style>
+    </style>
+</head>
+<body>
+<h2>Bootstrap Prompt</h2>
+
+<button class="btn btn-default" onclick="qnPrompt()">Prompt Name</button>
+<button class="btn btn-default" onclick="qnPromptWithValidation()">Prompt Age with validation</button>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/knockout-3.2.0.js"></script>
+<script src="framework/qn-prompt.js"></script>
+<script src="framework/qn-utils.js"></script>
+<script>
+    function qnPrompt() {
+        qn.prompt("Input your name:", null, function(value) {
+            console.log("your name : " + value);
+        });
+    }
+
+    function qnPromptWithValidation() {
+        qn.prompt("Input your age (0-100):", function(value) {
+            return value > 0 && value < 100;
+        }, function(value) {
+            console.log("your age : " + value);
+        });
+    }
+
+</script>
+</body>
+</html>
